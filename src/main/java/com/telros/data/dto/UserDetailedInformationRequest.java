@@ -6,26 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserDetailedInformationRequest {
+    @NotNull
     private String secondName;
     @NotNull
     private String firstName;
+    @NotNull
     private String patronymic;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     private Date birthDate;
-    @Email
-    private String email;
-    @Pattern(regexp = "\\d{10}")
-    private String phoneNumber;
 }

@@ -1,0 +1,51 @@
+GET http://localhost:8080/telros/user
+
+###
+
+GET http://localhost:8080/telros/user/2/image
+
+###
+
+POST http://localhost:8080/telros/user
+Content-Type: application/json
+
+{
+  "secondName": "Familia",
+  "firstName": "Imya",
+  "patronymic": "Otchestvo",
+  "birthDate": "2000-01-01",
+  "email": "email@mail.ru",
+  "phoneNumber": "1234567890"
+}
+
+###
+
+DELETE http://localhost:8080/telros/user/5
+
+###
+
+DELETE http://localhost:8080/telros/user/2/image
+
+###
+
+PUT http://localhost:8080/telros/user/detailed-info/1
+Content-Type: application/json
+
+{
+    "firstName": "Nikita",
+    "secondName": "Petrov",
+    "patronymic": "Nikolaevich",
+    "birthDate": "1999-03-02"
+}
+
+###
+
+PUT http://localhost:8080/telros/user/contact-info/1
+Content-Type: application/json
+
+{
+  "email": "qwe@ewq.com",
+  "phoneNumber": "0987654321"
+}
+
+###

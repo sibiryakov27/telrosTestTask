@@ -30,8 +30,8 @@ _Idea_:
 - run
 
 ### Examples
-You can find example-request in directory ```request```
-You can test this requests in Intellij Idea (Ultimate Edition) or copy them into postman
+You can find example-request in directory ```request```.
+You can test this requests in Intellij Idea (Ultimate Edition) or copy them into postman.
 For putting image you can use the image in resources/image directory.
 Screenshot from postman with such request:
 ![img.png](img.png)

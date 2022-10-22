@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/image")
-    public @ResponseBody ResponseEntity<byte[]> getUserImage(@PathVariable Integer id) throws IOException {
+    public @ResponseBody ResponseEntity<byte[]> getUserImage(@PathVariable Integer id) {
         byte[] image = userService.getUserImage(id);
         return ResponseEntity
                 .ok()

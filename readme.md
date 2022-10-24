@@ -1,4 +1,4 @@
-# Course work (in progress)
+# Telros test task
 Test task for [telros](https://www.telros.ru/) company
 
 ##  🚀 Getting Started

@@ -13,6 +13,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserContactInfo {
+    private Integer id;
     @Email
     private String email;
     @Pattern(regexp = "\\d{10}")

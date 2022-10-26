@@ -15,6 +15,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDetailedInformationRequest {
+    private Integer id;
     @NotNull
     private String secondName;
     @NotNull

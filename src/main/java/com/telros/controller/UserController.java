@@ -6,7 +6,6 @@ import com.telros.data.dto.UserDetailedInformationRequest;
 import com.telros.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,68 +31,55 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user")
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{id}/image")
-    public @ResponseBody ResponseEntity<byte[]> getUserImage(@PathVariable Integer id) {
-        byte[] image = userService.getUserImage(id);
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(image);
+    @GetMapping(value = "/user/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getUserImage(@PathVariable Integer id) {
+        return userService.getUserImage(id);
     }
 
     @PostMapping("/user")
-    public ResponseEntity<UserDTO> addNewUser(@Valid @RequestBody UserDTO user) {
-        UserDTO addedUser = userService.saveUser(user);
-        return ResponseEntity.ok(addedUser);
+    public UserDTO addNewUser(@Valid @RequestBody UserDTO user) {
+        return userService.saveUser(user);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable Integer id) {
-        UserDTO deletedUser = userService.deleteUser(id);
-        return ResponseEntity.ok(deletedUser);
+    public UserDTO deleteUser(@PathVariable Integer id) {
+        return userService.deleteUser(id);
     }
 
-    @DeleteMapping("/user/{id}/image")
-    public ResponseEntity<byte[]> deleteUserImage(@PathVariable Integer id) {
-        byte[] image = userService.deleteImage(id);
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(image);
+    @DeleteMapping(value = "/user/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] deleteUserImage(@PathVariable Integer id) {
+        return userService.deleteImage(id);
     }
 
     @PutMapping("/user/detailed-info/{id}")
-    public ResponseEntity<UserDTO> updateUserInfo(
+    public UserDTO updateUserInfo(
             @PathVariable Integer id,
             @Valid @RequestBody UserDetailedInformationRequest userInfo
             ) {
-        UserDTO updatedUser = userService.updateUserInfo(id, userInfo);
-        return ResponseEntity.ok(updatedUser);
+        return userService.updateUserInfo(id, userInfo);
     }
 
     @PutMapping("/user/contact-info/{id}")
-    public ResponseEntity<UserDTO> updateUserContacts(
+    public UserDTO updateUserContacts(
             @PathVariable Integer id,
             @Valid @RequestBody UserContactInfo userContacts
     ) {
-        UserDTO updatedUser = userService.updateUserContacts(id, userContacts);
-        return ResponseEntity.ok(updatedUser);
+        return userService.updateUserContacts(id, userContacts);
     }
 
-    @PutMapping(value = "/user/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<byte[]> updateUserImage(
+    @PutMapping(
+            value = "/user/{id}/image",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public byte[] updateUserImage(
             @PathVariable Integer id,
             @RequestParam MultipartFile file
     ) {
-        byte[] image = userService.updateUserImage(id, file);
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(image);
+        return userService.updateUserImage(id, file);
     }
 }
